@@ -8,6 +8,7 @@ function App() {
     <h1>Estudo do CSS no React</h1>
 
     <Exercicio1/><p></p>
+    <hr />
     <Exercicio2/>
        </>
   )
