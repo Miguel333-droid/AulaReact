@@ -1,0 +1,20 @@
+.titulo{
+    
+    color: red;
+    background-color: yellow;
+    text-align: center;
+    padding: 10px;
+}
+
+.titulo:hover {
+    color: gray;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.destaque {
+    font-weight: bold;
+    font-style: italic;
+    color: magenta;
+    
+} 
