@@ -24,4 +24,39 @@ a:hover {
     background-color: rgba(48, 47, 2, 0.1);
     font-size: 20px;
     font-weight: bolder;
+
 }
+
+.container {
+    width: 600px;
+    margin: 20px auto;
+    border: 1px solid #960000;
+    border-radius: 5px;
+
+    padding: 10px;
+}
+
+input[type = text], input[type = number]
+ {
+     width: 100%;
+     padding: 8px;
+     margin: 8px 0;
+     box-sizing: border-box;
+
+     border: 1px solid #960000;
+ }
+
+ input[type = button] {
+     background-color: #960000;
+     color: white;
+     padding: 10px;
+     border-radius: 5px;
+     margin-right: 5px;
+     cursor: pointer;
+
+ }
+
+ input[type = button]:hover {
+    background-color: #630000 ;
+    
+ }
