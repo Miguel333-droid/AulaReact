@@ -3,7 +3,7 @@ const cors = require("cors");
 const mysql2 = require("mysql2");
 
 const app = express();
-const PORT = 3301;
+const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -39,7 +39,7 @@ app.get("/alunos", (req, res) =>{
             console.log(erro);
             return res.status(50).json({erorr: "Erro ao consultar alunos"});
         } else {
-            console.log(resultaods);
+            console.log(resultados);
             return res.status(200).json(resultados);
         }
     });
@@ -53,16 +53,18 @@ app.get("/alunos/:codigo", (req, res) =>{
     const sql = "SELECT * FROM alunos where codigo = ? ";
     
     banco.query(sql, [codigo], (erro, resultado) => {
-        if (erro) {
+        if (erro) 
+        {
             console.log(erro);
-            return res.status(500).json({erorr: "Erro ao consulta aluno"});
-            
-        } if(resultados.length === 0) {
-            return res.status(404).json({message: "Aluno não encontrado!"});
+            return res.status(500).json({error: "Erro ao consulta aluno"});            
+        } 
 
+        if(resultado.length === 0) 
+        {
+            return res.status(404).json({message: "Aluno não encontrado!"});
         }
 
-        return res.status(200).json(resultados[0]);
+        return res.status(200).json(resultado[0]);
 
     });
 
@@ -71,7 +73,7 @@ app.get("/alunos/:codigo", (req, res) =>{
 app.post("/alunos", (req, res) => {
     const {nome,cidade,estado} = req.body;
 
-    const sql = "insert into alunos(nome,cidade,estado) values (?,?,?)";
+    const sql = "insert into alunos(nome,cidader,estado) values (?,?,?)";
 
     banco.query(sql,[nome, cidade, estado],(erro,result) => {
 
@@ -94,7 +96,7 @@ app.put("/alunos/:id", (req, res) => {
     const {id} = req.params;
     const {nome,cidade,estado} = req.body;
 
-    const sql = "UPDATE alunos SET nome = ?, cidade = ?, estado = ? WHERE codigo = ?";]
+    const sql = "UPDATE alunos SET nome = ?, cidader = ?, estado = ? WHERE codigo = ?";
     banco.query(sql,[nome,cidade,estado,id],(erro,result) => {
 
         if (erro) {
