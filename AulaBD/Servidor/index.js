@@ -73,17 +73,17 @@ app.get("/alunos/:codigo", (req, res) =>{
 app.post("/alunos", (req, res) => {
     const {nome,cidade,estado} = req.body;
 
-    const sql = "insert into alunos(nome,cidader,estado) values (?,?,?)";
+    const sql = "insert into alunos(nome,cidade,estado) values (?,?,?)";
 
     banco.query(sql,[nome, cidade, estado],(erro,result) => {
 
         if (erro) {
-            comsole.log(erro);
+            console.log(erro);
             return res.status(res).json({error:"Erro ao cadastrar aluno"});
 
         } else {
 
-        let mensagem = `Aluno ${nome} cadastrado com sucesso com o codigo ${res}`
+        let mensagem = `Aluno ${nome} cadastrado com sucesso com o codigo`;
         console.log(mensagem);
         return res.status(201).json({message: mensagem});
 
@@ -96,19 +96,23 @@ app.put("/alunos/:id", (req, res) => {
     const {id} = req.params;
     const {nome,cidade,estado} = req.body;
 
-    const sql = "UPDATE alunos SET nome = ?, cidader = ?, estado = ? WHERE codigo = ?";
+    const sql = "UPDATE alunos SET nome = ?, cidade = ?, estado = ? WHERE codigo = ?";
     banco.query(sql,[nome,cidade,estado,id],(erro,result) => {
 
         if (erro) {
             console.log(erro);
+            console.log("Erro ao atualizar aluno");
             return res .status(500).json({error: "Erro ao atualizar aluno"});
         }
 
         if(result.affectedRows === 0 ){
+            console.log("Aluno não encontrado !");
             return res.status(404).json({message: "Aluno não encontrado"});
         }
 
-        return res.status(200).json({messagem: `Aluno com ID ${id} atualizado com sucesso`});
+        console.log(`Aluno com ID ${id} atualizado com sucesso`);
+        return res.status(200).json({ message: `Aluno com ID ${id} atualizado com sucesso` });
+
 
     });
 });
@@ -128,7 +132,7 @@ app.delete("/alunos/:id", (req, res) => {
             return res.status(404).json({message: "Aluno não encontrado"});
         }
 
-        return res.status(200).json({messagem: `Aluno com ID ${id} excluido com sucesso`});
+        return res.status(200).json({message: `Aluno com ID ${id} excluido com sucesso`});
     });
 
     
